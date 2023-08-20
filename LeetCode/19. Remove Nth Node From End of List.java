@@ -11,36 +11,32 @@
 class Solution {
 
     //static boolean isFinish = false;
-    static int count = 0;
+    //static int count = 0;
 
-    public ListNode traverse(ListNode temp , int n ){
-
+    public int traverse(ListNode temp , int n ){
+        //System.out.println("Count after = "+ count);
         if(temp.next == null){
-            System.out.println(n + " "+count );
-            count++;
-            return temp ;    
+            return 1 ;    
         }
-        traverse(temp.next,n);
-        if(count > 0){
-            System.out.println(n + " "+count );
-            count ++;
-        }
-
-        if(count == n+1){
-            System.out.println(n + " "+count );
+        int count = traverse(temp.next,n);
+        //System.out.println("Count of node = "+ count+1);
+        if(count == n){
+            //System.out.println(n + " hello "+count );
             temp.next = temp.next.next;
         }
-        return temp;
+        return count+1 ;
     }
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode temp = head;
-
+        //System.out.println(n + " hello "+count );
         if(head.next == null){
             head = null;
             return head;
         }
         if(head != null){
-            traverse(temp,n);
+            int count = traverse(head,n);
+            if(count == n){
+                head = head.next;
+            }
         }
         return head;
     }
